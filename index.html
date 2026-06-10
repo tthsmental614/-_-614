@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>波ログ 🫧</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true">✦ 𓂃 🫧 ☾ ୨୧</div>
+  <main class="app">
+    <section class="hero card">
+      <p class="eyebrow">Mood diary for bipolar waves</p>
+      <h1>波ログ <span>🫧</span></h1>
+      <p class="lead">気分・睡眠・希死念慮・浪費衝動・服薬を、主治医に見せやすく一粒ずつ記録。</p>
+      <div id="birthday" class="birthday hidden">🎂 6/14 お誕生日モード：未来を見に行く日。</div>
+      <div id="riskBox" class="risk neutral">まだ記録がありません。今日の波を一粒だけ置いていこう。</div>
+    </section>
+
+    <section class="card">
+      <h2>今日の記録 ✍️</h2>
+      <form id="entryForm" class="grid">
+        <label>日付<input id="date" type="date" required></label>
+        <label>気分 <b id="moodValue">0</b><input id="mood" type="range" min="-5" max="5" value="0"></label>
+        <label>睡眠時間<input id="sleep" type="number" min="0" max="24" step="0.5" placeholder="例: 6.5"></label>
+        <label>希死念慮 <b id="deathValue">0</b><input id="death" type="range" min="0" max="5" value="0"></label>
+        <label>浪費衝動 <b id="spendValue">0</b><input id="spend" type="range" min="0" max="5" value="0"></label>
+        <label>不安・焦燥 <b id="anxietyValue">0</b><input id="anxiety" type="range" min="0" max="5" value="0"></label>
+        <label>服薬<select id="meds"><option>記録なし</option><option>飲んだ</option><option>忘れた</option><option>中止・自己判断あり</option></select></label>
+        <label class="wide">今日できたこと<input id="done" type="text" placeholder="例: 帰宅した、水を飲んだ、ライブ行った"></label>
+        <label class="wide">メモ<textarea id="note" rows="3" placeholder="体調、通院メモ、気になったことなど"></textarea></label>
+        <button class="primary" type="submit">今日の波を保存 🫧</button>
+      </form>
+    </section>
+
+    <section class="card shopping">
+      <h2>買い物24時間保留リスト 🛍️</h2>
+      <div class="inline"><input id="wishItem" placeholder="例: Apple Watch SE / SONYスピーカー"><button id="addWish" type="button">保留する</button></div>
+      <ul id="wishList"></ul>
+    </section>
+
+    <section class="card doctor">
+      <h2>主治医に言うこと 🏥</h2>
+      <textarea id="doctorMemo" rows="4" placeholder="次回相談したいこと。躁っぽさ、睡眠、浪費、希死念慮、服薬など"></textarea>
+      <button id="saveDoctor" type="button">メモ保存</button>
+    </section>
+
+    <section class="card">
+      <h2>波グラフ 📈</h2>
+      <canvas id="chart" width="720" height="360"></canvas>
+      <p class="legend"><span class="mooddot"></span>気分　<span class="sleepdot"></span>睡眠　<span class="deathdot"></span>希死念慮</p>
+    </section>
+
+    <section class="card summary">
+      <h2>1週間まとめ 🌙</h2>
+      <div id="weekSummary"></div>
+    </section>
+
+    <section class="card tableCard">
+      <div class="tableHead"><h2>記録一覧 📔</h2><div><button id="exportBtn" type="button">CSV出力</button><button id="resetBtn" type="button" class="dangerBtn">全削除</button></div></div>
+      <div class="tableWrap"><table><thead><tr><th>日付</th><th>気分</th><th>睡眠</th><th>希死</th><th>浪費</th><th>不安</th><th>服薬</th><th>できた</th><th>メモ</th><th></th></tr></thead><tbody id="entries"></tbody></table></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
